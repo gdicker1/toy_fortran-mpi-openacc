@@ -1,0 +1,14 @@
+#!/usr/bin/env bash
+
+#PBS -N toy-mpi-acc
+#PBS -j oe
+#PBS -A NMMM0013
+#PBS -l select=1:ncpus=2
+#PBS -l walltime=00:10:00
+#PBS -q develop
+
+module purge
+module load ncarenv/23.09
+module load cuda nvhpc/24.7 cray-mpich ncarcompilers
+
+mpiexec -n 2 ./mpi-acc_toy.out
