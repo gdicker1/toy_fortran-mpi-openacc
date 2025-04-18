@@ -30,3 +30,7 @@
 *.exe
 *.out
 *.app
+
+# Derecho job outputs
+mpibind.*.log
+toy-mpi-acc.o*
