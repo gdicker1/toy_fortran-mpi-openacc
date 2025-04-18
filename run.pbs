@@ -3,12 +3,15 @@
 #PBS -N toy-mpi-acc
 #PBS -j oe
 #PBS -A NMMM0013
-#PBS -l select=1:ncpus=2
+#PBS -l select=1:ncpus=2:mpiprocs=2
 #PBS -l walltime=00:10:00
 #PBS -q develop
 
-module purge
-module load ncarenv/23.09
-module load cuda nvhpc/24.7 cray-mpich ncarcompilers
+module purge 2> /dev/null
+module load ncarenv/24.12
+module load nvhpc cuda cray-mpich ncarcompilers
+# module load linaro-forge/24.1 # if needed for debug
+ml
 
-mpiexec -n 2 ./mpi-acc_toy.out
+# mpibind --ddt-connect -- ./mpi-acc_toy.out # For linaro-forge 
+mpibind --line-buffer -- ./mpi-acc_toy.out
